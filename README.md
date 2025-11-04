@@ -103,13 +103,13 @@ The system must satisfy the following high-level criteria:
 
 ---
 
-## Repository Structure
-MAPA-chatbot/
-│
-├── app/ # Streamlit application
-├── data/ # Knowledge base and preprocessed data
-├── models/ # RAG + Gemini integration modules
-├── docs/ # Documentation and design files
-├── requirements.txt # Python dependencies
-├── README.md # Project overview (this file)
-└── .gitignore
+## Repository Structure  
+MAPA-chatbot/  
+│  
+├── app/ # Streamlit application  
+├── data/ # Knowledge base and preprocessed data  
+├── models/ # RAG + Gemini integration modules  
+├── docs/ # Documentation and design files  
+├── requirements.txt # Python dependencies  
+├── README.md # Project overview (this file)  
+└── .gitignore  
