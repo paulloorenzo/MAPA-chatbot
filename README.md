@@ -6,15 +6,12 @@ The system uses **Retrieval-Augmented Generation (RAG)** and integrates **Gemini
 ---
 
 ## Project Overview
-This repository contains the development artifacts for **Sprint 1**, which focuses on:
-- Establishing the system foundation and architecture.
-- Designing the user interface (UI).
-- Modeling the data structure through an Entity-Relationship Diagram (ERD).
-- Defining functional and non-functional acceptance criteria.
+This repository documents the iterative development of the MAPA Chatbot system under an Agile–Scrum framework.
+Each sprint focuses on progressive deliverables, improving the system’s modularity, maintainability, and performance.
 
 ---
 
-## System Features (Sprint 1 Goals)
+## System Features 
 - **Streamlit-based Chat UI**: Provides an interactive conversational experience through a user-friendly interface.
 - **Gemini 2.5 Flash API Integration**: Powers the chatbot’s language understanding and generative responses.
 - **Retrieval-Augmented Generation (RAG)**: Grounds responses in institutionally verified sources for factual accuracy.
