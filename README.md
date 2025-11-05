@@ -15,39 +15,37 @@ This repository contains the development artifacts for **Sprint 1**, which focus
 ---
 
 ## System Features (Sprint 1 Goals)
-- **Streamlit-based Chat UI**: Interactive chatbot interface for real-time user interaction.
-- **Gemini 2.5 Flash API Integration**: Handles natural language understanding and response generation.
-- **Retrieval-Augmented Generation (RAG)**: Ensures responses are grounded in verified institutional data sources.
-- **Data Pipeline**: Supports document ingestion, preprocessing, metadata tagging, and vector embedding.
-- **Scalable Database Schema**: Tracks users, sessions, messages, and reference sources.
-
+- **Streamlit-based Chat UI**: Provides an interactive conversational experience through a user-friendly interface.
+- **Gemini 2.5 Flash API Integration**: Powers the chatbot’s language understanding and generative responses.
+- **Retrieval-Augmented Generation (RAG)**: Grounds responses in institutionally verified sources for factual accuracy.
+- **Optimized Data Pipeline**: Handles document ingestion, chunking, embedding, and storage in a searchable vector database.
+- **Dependency Injection Architecture**: Ensures modularity, scalability, and simplified testing by decoupling core components.
 ---
 
 ## System Architecture
-The system follows a **two-pipeline design**:
+The system follows a **two-pipeline design** that operate together to ensure accurate, data-grounded responses:
 1. **Offline Knowledge Base Builder**  
-   - Document ingestion and chunking  
-   - Metadata tagging  
-   - Vector embedding generation  
-   - Stored in a searchable vector database  
+   - Collects and preprocesses official university documents.
+   - Generates embeddings and metadata for search optimization.
+   - Stores processed data in a persistent vector database.
 
 2. **Real-Time Query Processor**  
-   - Converts user queries into embeddings  
-   - Performs similarity search  
-   - Retrieves top-N context chunks  
-   - Sends the contextualized prompt to Gemini API for response generation  
+   - Transforms user input into vector representations.
+   - Performs similarity search to retrieve relevant document chunks.
+   - Constructs contextual prompts and queries the Gemini 2.5 Flash API.
+   - Delivers coherent and contextually aligned responses via Streamlit.
 
 ---
 
 ## Data Model
-The **Entity-Relationship Diagram (ERD)** defines four main entities:
+The **Entity-Relationship Diagram (ERD)** defines four main entities that organizes user sessions, chatbot messages, and the institutional FAQ knowledge base.:
 
 | Entity | Description |
 |--------|--------------|
 | **STUDENT** | Manages user authentication and demographics. |
 | **CONVERSATION** | Tracks chat sessions linked to each student. |
-| **MESSAGE** | Logs individual dialogue turns between user and bot. |
-| **FAQ_DATABASE** | Stores RAG knowledge base content and metadata. |
+| **MESSAGE** | Logs message pairs (user query and chatbot response) within a conversation. |
+| **FAQ_DATABASE** | Contains verified academic and administrative documents used for RAG retrieval.|
 
 **Key Relationships:**
 - `STUDENT` → `CONVERSATION` (1:M)  
@@ -63,7 +61,7 @@ The **Entity-Relationship Diagram (ERD)** defines four main entities:
 The system must satisfy the following high-level criteria:
 
 ### 1. **System Design & Architecture**
-- Includes offline ingestion and online retrieval pipelines.
+- Includes offline ingestion (data ingestion) and online (query retrieval) pipelines.
 - Embeddings stored in a searchable vector DB.
 - Gemini API must process contextualized prompts.
 
@@ -75,6 +73,7 @@ The system must satisfy the following high-level criteria:
 ### 3. **Usability & Design**
 - UI aligns with Mapúa University branding.
 - Responsive, accessible chat interface with bubbles and timestamps.
+- Maintains clear distinction between user and chatbot responses.
 
 ### 4. **Performance & Testing**
 - Stable under 20+ concurrent users.
@@ -83,8 +82,8 @@ The system must satisfy the following high-level criteria:
 
 ### 5. **Data Integrity & Maintenance**
 - Metadata tagging for all ingested files.
-- Periodic refresh and re-indexing of updated data.
-- Guardrails for private or sensitive queries.
+- Regular re-indexing for new or updated documents.
+- Secure handling of environment variables and model configuration.
 
 ### 6. **Deployment & Documentation**
 - Deployable via Streamlit Cloud or localhost.
@@ -97,19 +96,26 @@ The system must satisfy the following high-level criteria:
 |-------|-------------|
 | **Frontend** | Streamlit |
 | **Backend** | Python, Gemini 2.5 Flash API |
-| **Database** | Vector DB (for embeddings), relational DB (for user data) |
+| **Vector Database** | Chroma |
+| **Embeddings** | HuggingFace/SentenceTransformers |
 | **Design** | Figma |
 | **Version Control** | Git + GitHub |
 
 ---
 
 ## Repository Structure  
-MAPA-chatbot/  
-│  
-├── app/ # Streamlit application  
-├── data/ # Knowledge base and preprocessed data  
-├── models/ # RAG + Gemini integration modules  
-├── docs/ # Documentation and design files  
-├── requirements.txt # Python dependencies  
-├── README.md # Project overview (this file)  
-└── .gitignore  
+MAPA-chatbot/
+│
+├── app.py                     # Main Streamlit chatbot application
+├── mapa.py                    # Backup script
+├── llama2-deep-dataset.pdf    # Document data source #1
+├── qa_data.pdf                # Document data source #2
+├── mapua_logo.jpg             # Branding image for UI
+│
+├── users.json                 # User profile data (temporary storage)
+├── users_db.json              # Extended user session and history records
+│
+├── requirements.txt           # Python dependencies for Streamlit Cloud (for Streamlit)
+├── runtime.txt                # Environment/runtime version configuration 
+├── README.md                  # Project overview and documentation (this file)
+└── .gitignore                 # Ignored files and folders for Git version control
