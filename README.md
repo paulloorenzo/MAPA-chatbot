@@ -100,6 +100,7 @@ The system must satisfy the following high-level criteria:
 
 ---
 
+"""
 ## Repository Structure  
 MAPA-chatbot/  
 │  
@@ -116,3 +117,4 @@ MAPA-chatbot/
 ├── runtime.txt                # Environment/runtime version configuration   
 ├── README.md                  # Project overview and documentation (this file)  
 └── .gitignore                 # Ignored files and folders for Git version control  
+"""
