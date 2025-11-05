@@ -100,21 +100,20 @@ The system must satisfy the following high-level criteria:
 
 ---
 
-"""
-## Repository Structure  
-MAPA-chatbot/  
-│  
-├── app.py                     # Main Streamlit chatbot application  
-├── mapa.py                    # Backup script  
-├── llama2-deep-dataset.pdf    # Document data source #1  
-├── qa_data.pdf                # Document data source #2  
-├── mapua_logo.jpg             # Branding image for UI  
-│  
-├── users.json                 # User profile data (temporary storage)  
-├── users_db.json              # Extended user session and history records  
-│  
-├── requirements.txt           # Python dependencies for Streamlit Cloud (for Streamlit)  
-├── runtime.txt                # Environment/runtime version configuration   
-├── README.md                  # Project overview and documentation (this file)  
-└── .gitignore                 # Ignored files and folders for Git version control  
-"""
+## Repository Structure
+
+<pre><code>MAPA-chatbot/
+│
+├── app.py                     # Main Streamlit chatbot application
+├── mapa.py                    # Backup script
+├── llama2-deep-dataset.pdf    # Document data source #1
+├── qa_data.pdf                # Document data source #2
+├── mapua_logo.jpg             # Branding image for UI
+│
+├── users.json                 # User profile data (temporary storage)
+├── users_db.json              # Extended user session and history records
+│
+├── requirements.txt           # Python dependencies for Streamlit Cloud
+├── runtime.txt                # Environment/runtime version configuration
+├── README.md                  # Project overview and documentation (this file)
+└── .gitignore                 # Ignored files and folders for Git version control</code></pre>
