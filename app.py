@@ -70,7 +70,8 @@ def ensure_chroma_db():
             st.error("chroma_db.zip not found.")
             st.stop()
 
-ensure_chroma_db()
+with st.spinner("Extracting Chroma database... Please wait."):
+    ensure_chroma_db()
 
 # -----------------------------
 # USER DATABASE FUNCTIONS
