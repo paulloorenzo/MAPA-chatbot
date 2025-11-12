@@ -1,0 +1,15 @@
+# --- ENVIRONMENTS ---
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+
+# --- SYSTEM FILES ---
+.DS_Store
+Thumbs.db
+
+# --- LARGE DATA / LOCAL FILES ---
+chroma_db/
+chroma_part_*
+data/

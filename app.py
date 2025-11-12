@@ -4,6 +4,7 @@ import mimetypes
 import logging
 import uuid
 import json
+import zipfile
 from dotenv import load_dotenv
 import streamlit as st
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -54,6 +55,22 @@ if not api_key:
     st.error("GOOGLE_API_KEY not found. Please add it to your .env file.")
     st.stop()
 genai.configure(api_key=api_key)
+
+# -----------------------------
+# IMPORTING EXTERNAL EMBEDDINGS AND OTHERS (IN ZIP FILE)
+# -----------------------------
+def ensure_chroma_db():
+    """Extract chroma_db.zip if not already extracted"""
+    if not os.path.exists("chroma_db"):
+        zip_path = "chroma_db.zip"
+        if os.path.exists(zip_path):
+            with zipfile.ZipFile(zip_path, "r") as zip_ref:
+                zip_ref.extractall("chroma_db")
+        else:
+            st.error("chroma_db.zip not found.")
+            st.stop()
+
+ensure_chroma_db()
 
 # -----------------------------
 # USER DATABASE FUNCTIONS

@@ -106,6 +106,7 @@ The system must satisfy the following high-level criteria:
 │
 ├── app.py                     # Main Streamlit chatbot application
 ├── mapa.py                    # Backup script
+├── chroma_db.zip              # Contains Embeddings, .sqlite3, etc.
 ├── llama2-deep-dataset.pdf    # Document data source #1
 ├── qa_data.pdf                # Document data source #2
 ├── mapua_logo.jpg             # Branding image for UI
