@@ -5,8 +5,8 @@ import logging
 import uuid
 import json
 import zipfile
-from dotenv import load_dotenv
 import streamlit as st
+from dotenv import load_dotenv
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -50,10 +50,26 @@ def _logo_data_uri(path: str) -> str:
 load_dotenv()
 logging.basicConfig(level=logging.ERROR)
 
-api_key = os.getenv("GOOGLE_API_KEY")
+# CLOUD: Finds key in Streamlit Cloud first
+api_key = st.secrets.get("GOOGLE_API_KEY", None)   
+
+# LOCALHOST: If it's localhost, it finds the local .env file
 if not api_key:
-    st.error("GOOGLE_API_KEY not found. Please add it to your .env file.")
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+if not api_key:
+    st.error("""
+             <strong> GOOGLE_API_KEY not found. </strong><br><br>
+             
+             <strong> If running locally: </strong><br>
+             Please add <code> GOOGLE_API_KEY </code> to your <code>.env</code> file.<br><br>
+             
+             <strong> If running on Streamlit Cloud: </strong><br>
+             Open app settings → Edit Secrets → <br>
+             Add: <code> GOOGLE_API_KEY = "your_key_here" </code>
+             """, unsafe_allow_html=True)
     st.stop()
+
 genai.configure(api_key=api_key)
 
 # -----------------------------
